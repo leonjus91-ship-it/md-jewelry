@@ -95,7 +95,6 @@ export default function Home() {
     return (
         <div style={{ backgroundColor: '#fff5f7', color: '#4a3f43', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", width: '100%', overflowX: 'hidden' }}>
 
-            {/* Estilo responsivo global inyectado */}
             <style jsx global>{`
         * {
           box-sizing: border-box;
@@ -109,11 +108,14 @@ export default function Home() {
             grid-template-columns: 1fr !important;
             padding: 15px !important;
           }
+          .hero-section {
+            padding: 40px 20px !important;
+          }
           .header-container {
             flex-direction: column !important;
             gap: 15px !important;
             padding: 15px 20px !important;
-            align-text: center !important;
+            text-align: center !important;
           }
           .header-search {
             width: 100% !important;
@@ -121,39 +123,77 @@ export default function Home() {
         }
       `}</style>
 
-            {/* Header */}
-            <header className="header-container" style={{ borderBottom: '2px solid #f2cfd9', padding: '20px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#ffffff', boxShadow: '0 2px 10px rgba(212, 175, 55, 0.1)' }}>
-                <h1 style={{ margin: 0, color: '#c59b27', letterSpacing: '2px', fontSize: '1.8rem', fontWeight: 'bold', textAlign: 'center' }}>MD JEWELRY</h1>
-                <input
-                    className="header-search"
-                    type="text"
-                    placeholder="Buscar joyas..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    style={{ padding: '10px 18px', borderRadius: '25px', border: '1px solid #f2cfd9', backgroundColor: '#fff5f7', color: '#4a3f43', width: '260px', outline: 'none' }}
-                />
+            {/* Header estilo RJL pero con toque femenino */}
+            <header className="header-container" style={{ borderBottom: '2px solid #f2cfd9', padding: '20px 50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#ffffff', boxShadow: '0 2px 10px rgba(212, 175, 55, 0.1)' }}>
+                <h1 style={{ margin: 0, color: '#d4af37', letterSpacing: '3px', fontSize: '1.8rem', fontWeight: 'bold' }}>MD JEWELRY</h1>
+                <div style={{ display: 'flex', gap: '25px', alignItems: 'center', fontSize: '0.9rem', fontWeight: '600', color: '#6b5b63' }}>
+                    <span style={{ cursor: 'pointer', color: '#d4af37' }}>INICIO</span>
+                    <span style={{ cursor: 'pointer' }}>COLECCIÓN</span>
+                    <span style={{ cursor: 'pointer' }}>NOSOTROS</span>
+                    <span
+                        onClick={handleWhatsAppCheckout}
+                        style={{ cursor: 'pointer', color: '#d4af37', letterSpacing: '1px' }}
+                    >
+                        PEDIDOS POR WHATSAPP
+                    </span>
+                </div>
             </header>
 
-            <main className="main-container" style={{ padding: '30px 40px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '30px' }}>
+            {/* Hero Banner estilo RJL (Fondo elegante en tono oscuro suave / dorado / rosa pastel con tipografía grande) */}
+            <section className="hero-section" style={{ backgroundColor: '#2c2226', color: '#ffffff', padding: '60px 20px', textAlign: 'center', borderBottom: '4px solid #d4af37' }}>
+                <p style={{ color: '#d4af37', textTransform: 'uppercase', letterSpacing: '4px', fontSize: '0.85rem', marginBottom: '10px', fontWeight: 'bold' }}>
+                    ELEGANCIA Y DISTINCIÓN
+                </p>
+                <h2 style={{ fontSize: '2.5rem', color: '#d4af37', letterSpacing: '2px', margin: '0 0 15px 0', fontWeight: '700' }}>
+                    BRILLO QUE SE LLEVA
+                </h2>
+                <p style={{ color: '#dcd1d6', maxWidth: '600px', margin: '0 auto 30px auto', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                    Encuentra joyas exclusivas con diseños únicos. Anillos delicados, cadenas deslumbrantes y conjuntos perfectos para cada ocasión.
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+                    <button
+                        onClick={() => window.scrollTo({ top: 500, behavior: 'smooth' })}
+                        style={{ padding: '12px 28px', backgroundColor: '#d4af37', color: '#ffffff', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', letterSpacing: '1px' }}
+                    >
+                        VER COLECCIÓN
+                    </button>
+                    <button
+                        onClick={handleWhatsAppCheckout}
+                        style={{ padding: '12px 28px', backgroundColor: 'transparent', color: '#d4af37', border: '1px solid #d4af37', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', letterSpacing: '1px' }}
+                    >
+                        PEDIR POR WHATSAPP
+                    </button>
+                </div>
+            </section>
+
+            <main className="main-container" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '30px' }}>
 
                 {/* Catálogo y Filtros */}
                 <section>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #c59b27', paddingBottom: '10px', marginBottom: '20px' }}>
-                        <h2 style={{ margin: 0, color: '#c59b27', fontSize: '1.4rem', fontWeight: '600' }}>Catálogo Exclusivo</h2>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #d4af37', paddingBottom: '10px', marginBottom: '20px' }}>
+                        <h3 style={{ margin: 0, color: '#d4af37', fontSize: '1.4rem', fontWeight: '600' }}>Catálogo Exclusivo</h3>
+                        <input
+                            className="header-search"
+                            type="text"
+                            placeholder="Buscar joyas..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            style={{ padding: '8px 14px', borderRadius: '20px', border: '1px solid #f2cfd9', backgroundColor: '#ffffff', color: '#4a3f43', width: '220px', outline: 'none', fontSize: '0.9rem' }}
+                        />
                     </div>
 
-                    {/* Botones de Filtro por Categoría (Desplazables en horizontal si son muchos) */}
+                    {/* Botones de Filtro por Categoría */}
                     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '25px' }}>
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 style={{
-                                    padding: '8px 16px',
+                                    padding: '8px 18px',
                                     borderRadius: '20px',
-                                    border: '1px solid #c59b27',
-                                    backgroundColor: selectedCategory === cat ? '#c59b27' : '#ffffff',
-                                    color: selectedCategory === cat ? '#ffffff' : '#c59b27',
+                                    border: '1px solid #d4af37',
+                                    backgroundColor: selectedCategory === cat ? '#d4af37' : '#ffffff',
+                                    color: selectedCategory === cat ? '#ffffff' : '#d4af37',
                                     fontWeight: 'bold',
                                     fontSize: '0.9rem',
                                     cursor: 'pointer',
@@ -170,22 +210,22 @@ export default function Home() {
                     ) : filteredProducts.length === 0 ? (
                         <p style={{ marginTop: '20px', color: '#8c7b83' }}>No hay productos registrados en esta categoría.</p>
                     ) : (
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '15px' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '20px' }}>
                             {filteredProducts.map((product) => (
                                 <div key={product.id} style={{ backgroundColor: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #f7d6e0', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                     {product.image_url && (
-                                        <img src={product.image_url} alt={product.title} style={{ width: '100%', height: '170px', objectFit: 'cover' }} />
+                                        <img src={product.image_url} alt={product.title} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                                     )}
                                     <div style={{ padding: '14px' }}>
-                                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: '#c59b27', fontWeight: 'bold', letterSpacing: '1px' }}>{product.category}</span>
-                                        <h3 style={{ margin: '4px 0 6px 0', fontSize: '1rem', color: '#333333' }}>{product.title}</h3>
+                                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: '#d4af37', fontWeight: 'bold', letterSpacing: '1px' }}>{product.category}</span>
+                                        <h4 style={{ margin: '4px 0 6px 0', fontSize: '1rem', color: '#333333' }}>{product.title}</h4>
                                         <p style={{ color: '#7a6e74', fontSize: '0.82rem', height: '32px', overflow: 'hidden', marginBottom: '10px' }}>{product.description}</p>
-                                        <p style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#c59b27', margin: '8px 0' }}>${product.price}</p>
+                                        <p style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#d4af37', margin: '8px 0' }}>${product.price}</p>
                                         <button
                                             onClick={() => addToCart(product)}
-                                            style={{ width: '100%', padding: '10px', backgroundColor: '#c59b27', color: '#ffffff', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.9rem', cursor: 'pointer' }}
+                                            style={{ width: '100%', padding: '10px', backgroundColor: '#d4af37', color: '#ffffff', border: 'none', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.9rem', cursor: 'pointer' }}
                                         >
-                                            Agregar
+                                            Agregar al Carrito
                                         </button>
                                     </div>
                                 </div>
@@ -196,7 +236,7 @@ export default function Home() {
 
                 {/* Carrito de Compras */}
                 <aside style={{ backgroundColor: '#ffffff', padding: '20px', borderRadius: '12px', border: '1px solid #f7d6e0', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', height: 'fit-content' }}>
-                    <h3 style={{ margin: '0 0 15px 0', color: '#c59b27', borderBottom: '1px solid #f2cfd9', paddingBottom: '8px', fontSize: '1.1rem' }}>Tu Carrito</h3>
+                    <h3 style={{ margin: '0 0 15px 0', color: '#d4af37', borderBottom: '1px solid #f2cfd9', paddingBottom: '8px', fontSize: '1.1rem' }}>Tu Carrito</h3>
                     {cart.length === 0 ? (
                         <p style={{ color: '#8c7b83', fontSize: '0.9rem' }}>El carrito está vacío.</p>
                     ) : (
@@ -205,7 +245,7 @@ export default function Home() {
                                 <div key={item.product.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', fontSize: '0.9rem' }}>
                                     <div>
                                         <strong style={{ color: '#333' }}>{item.product.title}</strong> x{item.quantity}
-                                        <div style={{ color: '#c59b27', fontWeight: 'bold' }}>${(item.product.price * item.quantity).toFixed(2)}</div>
+                                        <div style={{ color: '#d4af37', fontWeight: 'bold' }}>${(item.product.price * item.quantity).toFixed(2)}</div>
                                     </div>
                                     <button onClick={() => removeFromCart(item.product.id)} style={{ background: 'transparent', border: 'none', color: '#e76f51', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>✕</button>
                                 </div>
@@ -213,7 +253,7 @@ export default function Home() {
                             <hr style={{ borderColor: '#f2cfd9', margin: '12px 0' }} />
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.05rem', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
                                 <span>Total:</span>
-                                <span style={{ color: '#c59b27' }}>${cartTotal.toFixed(2)}</span>
+                                <span style={{ color: '#d4af37' }}>${cartTotal.toFixed(2)}</span>
                             </div>
 
                             {/* Botón de WhatsApp */}
