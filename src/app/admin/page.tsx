@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 
 export default function AdminPage() {
@@ -28,8 +28,8 @@ export default function AdminPage() {
         e.preventDefault()
         setLoading(true)
 
-        const { data, error } = await supabase
-            .from('products')
+        const { error } = await supabase
+            .from('productos')
             .insert([
                 {
                     title,
