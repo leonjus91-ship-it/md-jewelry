@@ -92,7 +92,7 @@ export default function Home() {
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
     }
 
-    const categories = ['Todas', 'Anillos', 'Cadenas', 'Pulseras', 'Aretes']
+    const categories = ['Todas', 'Anillos', 'Cadenas', 'Pulseras', 'Aretes', 'Conjuntos']
 
     return (
         <div style={{ backgroundColor: '#fff5f7', color: '#4a3f43', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>

@@ -132,6 +132,7 @@ export default function AdminPage() {
                         <option value="Cadenas">Cadenas</option>
                         <option value="Pulseras">Pulseras</option>
                         <option value="Aretes">Aretes</option>
+                        <option value="Conjuntos">Conjuntos</option>
                     </select>
                 </div>
 
