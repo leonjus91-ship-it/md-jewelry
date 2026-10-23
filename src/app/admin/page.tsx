@@ -102,7 +102,7 @@ export default function AdminPage() {
     return (
         <div style={{ minHeight: '100vh', backgroundColor: '#fff5f7', fontFamily: "'Segoe UI', sans-serif", padding: '30px 20px' }}>
 
-            {/* Estilos para ocultar el panel y dejar solo la factura al imprimir */}
+            {/* Estilos para impresión limpia */}
             <style jsx global>{`
         @media print {
           body {
@@ -167,12 +167,13 @@ export default function AdminPage() {
                     </button>
                 </div>
 
-                {/* Vista previa de Comprobante / Factura (Única sección que se imprime) */}
+                {/* Vista previa de Comprobante / Factura con RUC */}
                 <div className="print-container" style={{ backgroundColor: '#ffffff', padding: '25px', borderRadius: '12px', border: '2px solid #d4af37', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
                         <div style={{ textAlign: 'center', borderBottom: '2px solid #d4af37', paddingBottom: '10px', marginBottom: '15px' }}>
                             <h2 style={{ margin: 0, color: '#d4af37', letterSpacing: '2px' }}>MD JEWELRY</h2>
-                            <p style={{ margin: '4px 0', fontSize: '0.8rem', color: '#666' }}>COMPROBANTE DE VENTA</p>
+                            <p style={{ margin: '4px 0 2px 0', fontSize: '0.85rem', fontWeight: 'bold', color: '#444' }}>RUC: 0955901681001</p>
+                            <p style={{ margin: 0, fontSize: '0.75rem', color: '#777' }}>COMPROBANTE DE VENTA</p>
                         </div>
 
                         <div style={{ fontSize: '0.85rem', marginBottom: '15px', color: '#444' }}>
