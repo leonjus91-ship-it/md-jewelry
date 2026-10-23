@@ -102,15 +102,39 @@ export default function AdminPage() {
     return (
         <div style={{ minHeight: '100vh', backgroundColor: '#fff5f7', fontFamily: "'Segoe UI', sans-serif", padding: '30px 20px' }}>
 
-            <div style={{ maxWidth: '1000px', margin: '0 auto 25px auto', textAlign: 'center', borderBottom: '2px solid #d4af37', paddingBottom: '15px' }}>
+            {/* Estilos para ocultar el panel y dejar solo la factura al imprimir */}
+            <style jsx global>{`
+        @media print {
+          body {
+            background-color: #ffffff !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+          .print-container {
+            border: none !important;
+            box-shadow: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+          }
+          .print-grid {
+            display: block !important;
+          }
+        }
+      `}</style>
+
+            <div className="no-print" style={{ maxWidth: '1000px', margin: '0 auto 25px auto', textAlign: 'center', borderBottom: '2px solid #d4af37', paddingBottom: '15px' }}>
                 <h1 style={{ color: '#d4af37', margin: 0, letterSpacing: '2px' }}>SISTEMA DE FACTURACIÓN</h1>
                 <p style={{ color: '#666', margin: '5px 0 0 0', fontSize: '0.9rem' }}>MD JEWELRY - Punto de Venta</p>
             </div>
 
-            <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
+            <div className="print-grid" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
 
-                {/* Formulario Cliente y Productos */}
-                <div style={{ backgroundColor: '#ffffff', padding: '25px', borderRadius: '12px', border: '1px solid #f2cfd9', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+                {/* Formulario Cliente y Productos (Oculto al Imprimir) */}
+                <div className="no-print" style={{ backgroundColor: '#ffffff', padding: '25px', borderRadius: '12px', border: '1px solid #f2cfd9', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
                     <h3 style={{ color: '#d4af37', marginTop: 0, borderBottom: '1px solid #f2cfd9', paddingBottom: '8px' }}>Datos del Cliente</h3>
 
                     <div style={{ marginBottom: '12px' }}>
@@ -143,8 +167,8 @@ export default function AdminPage() {
                     </button>
                 </div>
 
-                {/* Vista previa de Comprobante / Factura */}
-                <div style={{ backgroundColor: '#ffffff', padding: '25px', borderRadius: '12px', border: '2px solid #d4af37', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                {/* Vista previa de Comprobante / Factura (Única sección que se imprime) */}
+                <div className="print-container" style={{ backgroundColor: '#ffffff', padding: '25px', borderRadius: '12px', border: '2px solid #d4af37', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
                         <div style={{ textAlign: 'center', borderBottom: '2px solid #d4af37', paddingBottom: '10px', marginBottom: '15px' }}>
                             <h2 style={{ margin: 0, color: '#d4af37', letterSpacing: '2px' }}>MD JEWELRY</h2>
@@ -165,7 +189,7 @@ export default function AdminPage() {
                                     <th style={{ padding: '6px 0' }}>Cant.</th>
                                     <th style={{ padding: '6px 0' }}>P.Unit</th>
                                     <th style={{ padding: '6px 0', textAlign: 'right' }}>Total</th>
-                                    <th style={{ padding: '6px 0' }}></th>
+                                    <th className="no-print" style={{ padding: '6px 0' }}></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -175,7 +199,7 @@ export default function AdminPage() {
                                         <td style={{ padding: '6px 0' }}>{item.quantity}</td>
                                         <td style={{ padding: '6px 0' }}>${item.product.price}</td>
                                         <td style={{ padding: '6px 0', textAlign: 'right' }}>${(item.product.price * item.quantity).toFixed(2)}</td>
-                                        <td style={{ padding: '6px 0', textAlign: 'right' }}>
+                                        <td className="no-print" style={{ padding: '6px 0', textAlign: 'right' }}>
                                             <button onClick={() => handleRemoveInvoiceItem(item.product.id)} style={{ background: 'none', border: 'none', color: 'red', cursor: 'pointer' }}>✕</button>
                                         </td>
                                     </tr>
@@ -188,7 +212,7 @@ export default function AdminPage() {
                         <div style={{ borderTop: '2px solid #d4af37', paddingTop: '10px', textAlign: 'right', fontSize: '1.2rem', fontWeight: 'bold', color: '#d4af37' }}>
                             TOTAL A PAGAR: ${total.toFixed(2)}
                         </div>
-                        <button onClick={handlePrint} style={{ width: '100%', marginTop: '15px', padding: '12px', backgroundColor: '#25D366', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', cursor: 'pointer' }}>
+                        <button className="no-print" onClick={handlePrint} style={{ width: '100%', marginTop: '15px', padding: '12px', backgroundColor: '#25D366', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.95rem', cursor: 'pointer' }}>
                             🖨️ Imprimir / Descargar PDF
                         </button>
                     </div>
